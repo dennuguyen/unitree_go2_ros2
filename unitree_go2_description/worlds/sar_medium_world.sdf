@@ -1,0 +1,3363 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="sar_medium_world">
+    <!-- Converted from medium_world.wbt (IEEE SMCS 2026 SAR competition, Webots) by wbt2sdf.py -->
+    <!--
+      Frames: SDF world frame == Webots world frame (ENU, Z up).
+      Origin marker (competition reference frame) world pose: -13.00000 16.00000 0.00200 0.00000 -0.00000 0.00000
+      robot1 start (world frame): x=-13.375 y=16.375 yaw=0.000
+      robot2 start (world frame): x=-13.375 y=16.000 yaw=0.000
+      victim1 (boy_3): world x=4.110 y=0.450  | origin frame x=17.110 y=-15.550
+      victim2 (man_1): world x=-3.270 y=-10.530  | origin frame x=9.730 y=-26.530
+      victim3 (woman_1): world x=-1.100 y=-4.391  | origin frame x=11.900 y=-20.391
+      victim4 (girl_1): world x=-9.923 y=5.390  | origin frame x=3.077 y=-10.610
+    -->
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>30.0444</latitude_deg>
+      <longitude_deg>31.2357</longitude_deg>
+      <elevation>74.0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <physics name="1ms" type="bullet-featherstone">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"></plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"></plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"></plugin>
+    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"></plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"></plugin>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>false</shadows>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>200 200</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.45 0.45 0.45 1</ambient>
+            <diffuse>0.45 0.45 0.45 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="floor">
+      <static>true</static>
+      <pose>0.00000 0.14000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00150 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>6.9500 22.5400 0.0020</size></box></geometry>
+          <material><ambient>0.450 0.300 0.200 1.0</ambient><diffuse>0.450 0.300 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="solid_5">
+      <static>true</static>
+      <pose>3.57500 3.11402 3.40610 1.57080 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 7.0000</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 7.0000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_111">
+      <static>true</static>
+      <pose>3.57500 2.35000 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.70000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>5.0000 0.2000 1.4000</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.70000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>5.0000 0.2000 1.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose">
+      <static>true</static>
+      <pose>4.98500 3.20000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00150 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.0200 6.3000 0.0020</size></box></geometry>
+          <material><ambient>0.450 0.300 0.200 1.0</ambient><diffuse>0.450 0.300 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="squaremanhole">
+      <static>true</static>
+      <pose>1.45000 -8.06000 -0.04800 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.0000 1.0000 0.1000</size></box></geometry>
+          <material><ambient>0.350 0.350 0.350 1.0</ambient><diffuse>0.350 0.350 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="manhole_0">
+      <static>true</static>
+      <pose>-1.45000 -8.06000 -0.04800 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.0000 1.0000 0.1000</size></box></geometry>
+          <material><ambient>0.350 0.350 0.350 1.0</ambient><diffuse>0.350 0.350 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="manhole_1">
+      <static>true</static>
+      <pose>1.45000 7.54000 -0.04800 -0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.0000 1.0000 0.1000</size></box></geometry>
+          <material><ambient>0.350 0.350 0.350 1.0</ambient><diffuse>0.350 0.350 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="manhole_2">
+      <static>true</static>
+      <pose>-1.51000 7.54000 -0.04800 -0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.0000 1.0000 0.1000</size></box></geometry>
+          <material><ambient>0.350 0.350 0.350 1.0</ambient><diffuse>0.350 0.350 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="desk">
+      <static>true</static>
+      <pose>4.10055 1.74225 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.35500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.2000 0.7100</size></box></geometry>
+          <material><ambient>0.550 0.400 0.250 1.0</ambient><diffuse>0.550 0.400 0.250 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.35500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.2000 0.7100</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="desk_1">
+      <static>true</static>
+      <pose>4.10429 2.96281 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.35500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.2000 0.7100</size></box></geometry>
+          <material><ambient>0.550 0.400 0.250 1.0</ambient><diffuse>0.550 0.400 0.250 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.35500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.2000 0.7100</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="monitor">
+      <static>true</static>
+      <pose>3.89076 3.15150 0.71000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+          <material><ambient>0.100 0.100 0.100 1.0</ambient><diffuse>0.100 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="monitor_4">
+      <static>true</static>
+      <pose>3.89076 4.10150 0.80000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+          <material><ambient>0.100 0.100 0.100 1.0</ambient><diffuse>0.100 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="monitor_1">
+      <static>true</static>
+      <pose>3.89076 2.66150 0.71000 0.00000 1.57079 -0.78540</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+          <material><ambient>0.100 0.100 0.100 1.0</ambient><diffuse>0.100 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.20000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose_1">
+      <static>true</static>
+      <pose>3.89076 1.47150 0.71000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.27319 0.23176 -0.00000 0.00000 1.57079 0.26180</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+          <material><ambient>0.100 0.100 0.100 1.0</ambient><diffuse>0.100 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.27319 0.23176 -0.00000 0.00000 1.57079 0.26180</pose>
+          <geometry><box><size>0.2000 0.4700 0.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="PLATFORM">
+      <static>true</static>
+      <pose>-1.85000 1.31000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.67000 0.00000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.67000 0.00000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.67000 0.00000 0.06835 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.1367</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.67000 0.00000 0.06835 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.1367</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.67000 -0.30000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.67000 -0.30000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>-0.67000 -0.30000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.3034</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>-0.67000 -0.30000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.3034</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>-0.67000 -0.60000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>-0.67000 -0.60000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v5">
+          <pose>-0.67000 -0.60000 0.23505 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.4701</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c5">
+          <pose>-0.67000 -0.60000 0.23505 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.4701</size></box></geometry>
+        </collision>
+        <visual name="v6">
+          <pose>-0.67000 -0.90000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c6">
+          <pose>-0.67000 -0.90000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v7">
+          <pose>-0.67000 -0.90000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.6368</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c7">
+          <pose>-0.67000 -0.90000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.6368</size></box></geometry>
+        </collision>
+        <visual name="v8">
+          <pose>-0.67000 -1.20000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c8">
+          <pose>-0.67000 -1.20000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v9">
+          <pose>-0.67000 -1.20000 0.40175 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.8035</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c9">
+          <pose>-0.67000 -1.20000 0.40175 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.8035</size></box></geometry>
+        </collision>
+        <visual name="v10">
+          <pose>-0.67001 -1.50000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c10">
+          <pose>-0.67001 -1.50000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v11">
+          <pose>-0.67001 -1.50000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.9702</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c11">
+          <pose>-0.67001 -1.50000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.9702</size></box></geometry>
+        </collision>
+        <visual name="v12">
+          <pose>-0.67001 -1.80000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c12">
+          <pose>-0.67001 -1.80000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v13">
+          <pose>-0.67001 -1.80000 0.56845 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.1369</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c13">
+          <pose>-0.67001 -1.80000 0.56845 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.1369</size></box></geometry>
+        </collision>
+        <visual name="v14">
+          <pose>-0.67001 -2.10000 1.31860 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c14">
+          <pose>-0.67001 -2.10000 1.31860 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v15">
+          <pose>-0.67001 -2.10000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.3036</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c15">
+          <pose>-0.67001 -2.10000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.3036</size></box></geometry>
+        </collision>
+        <visual name="v16">
+          <pose>-0.67001 -2.40000 1.48530 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c16">
+          <pose>-0.67001 -2.40000 1.48530 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v17">
+          <pose>-0.67001 -2.40000 0.73515 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.4703</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c17">
+          <pose>-0.67001 -2.40000 0.73515 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.4703</size></box></geometry>
+        </collision>
+        <visual name="v18">
+          <pose>-0.67001 -2.70000 1.65200 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c18">
+          <pose>-0.67001 -2.70000 1.65200 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v19">
+          <pose>-0.67001 -2.70000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.6370</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c19">
+          <pose>-0.67001 -2.70000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.6370</size></box></geometry>
+        </collision>
+        <visual name="v20">
+          <pose>-0.67001 -3.00000 1.81870 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c20">
+          <pose>-0.67001 -3.00000 1.81870 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v21">
+          <pose>-0.67001 -3.00000 0.90185 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.8037</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c21">
+          <pose>-0.67001 -3.00000 0.90185 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.8037</size></box></geometry>
+        </collision>
+        <visual name="v22">
+          <pose>-0.67001 -3.30000 1.98540 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c22">
+          <pose>-0.67001 -3.30000 1.98540 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v23">
+          <pose>-0.67001 -3.30000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.9704</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c23">
+          <pose>-0.67001 -3.30000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 1.9704</size></box></geometry>
+        </collision>
+        <visual name="v24">
+          <pose>-0.67001 -3.60000 2.15210 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c24">
+          <pose>-0.67001 -3.60000 2.15210 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v25">
+          <pose>-0.67001 -3.60000 1.06855 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 2.1371</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c25">
+          <pose>-0.67001 -3.60000 1.06855 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 2.1371</size></box></geometry>
+        </collision>
+        <visual name="v26">
+          <pose>-0.67001 -3.90000 2.31880 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c26">
+          <pose>-0.67001 -3.90000 2.31880 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v27">
+          <pose>-0.67001 -3.90000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 2.3038</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c27">
+          <pose>-0.67001 -3.90000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.2000 2.3038</size></box></geometry>
+        </collision>
+        <visual name="v28">
+          <pose>0.65000 0.00000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c28">
+          <pose>0.65000 0.00000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v29">
+          <pose>0.65000 0.00000 0.06835 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.1367</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c29">
+          <pose>0.65000 0.00000 0.06835 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.1367</size></box></geometry>
+        </collision>
+        <visual name="v30">
+          <pose>0.65000 -0.30000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c30">
+          <pose>0.65000 -0.30000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v31">
+          <pose>0.65000 -0.30000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.3034</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c31">
+          <pose>0.65000 -0.30000 0.15170 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.3034</size></box></geometry>
+        </collision>
+        <visual name="v32">
+          <pose>0.65000 -0.60000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c32">
+          <pose>0.65000 -0.60000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v33">
+          <pose>0.65000 -0.60000 0.23505 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.4701</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c33">
+          <pose>0.65000 -0.60000 0.23505 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.4701</size></box></geometry>
+        </collision>
+        <visual name="v34">
+          <pose>0.65000 -0.90000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c34">
+          <pose>0.65000 -0.90000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v35">
+          <pose>0.65000 -0.90000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.6368</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c35">
+          <pose>0.65000 -0.90000 0.31840 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.6368</size></box></geometry>
+        </collision>
+        <visual name="v36">
+          <pose>0.65000 -1.20000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c36">
+          <pose>0.65000 -1.20000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v37">
+          <pose>0.65000 -1.20000 0.40175 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.8035</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c37">
+          <pose>0.65000 -1.20000 0.40175 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.8035</size></box></geometry>
+        </collision>
+        <visual name="v38">
+          <pose>0.65000 -1.50000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c38">
+          <pose>0.65000 -1.50000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v39">
+          <pose>0.65000 -1.50000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.9702</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c39">
+          <pose>0.65000 -1.50000 0.48510 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.9702</size></box></geometry>
+        </collision>
+        <visual name="v40">
+          <pose>0.65000 -1.80000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c40">
+          <pose>0.65000 -1.80000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v41">
+          <pose>0.65000 -1.80000 0.56845 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.1369</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c41">
+          <pose>0.65000 -1.80000 0.56845 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.1369</size></box></geometry>
+        </collision>
+        <visual name="v42">
+          <pose>0.65000 -2.10000 1.31860 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c42">
+          <pose>0.65000 -2.10000 1.31860 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v43">
+          <pose>0.65000 -2.10000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.3036</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c43">
+          <pose>0.65000 -2.10000 0.65180 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.3036</size></box></geometry>
+        </collision>
+        <visual name="v44">
+          <pose>0.65000 -2.40000 1.48530 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c44">
+          <pose>0.65000 -2.40000 1.48530 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v45">
+          <pose>0.65000 -2.40000 0.73515 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.4703</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c45">
+          <pose>0.65000 -2.40000 0.73515 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.4703</size></box></geometry>
+        </collision>
+        <visual name="v46">
+          <pose>0.65000 -2.70000 1.65200 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c46">
+          <pose>0.65000 -2.70000 1.65200 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v47">
+          <pose>0.65000 -2.70000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.6370</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c47">
+          <pose>0.65000 -2.70000 0.81850 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.6370</size></box></geometry>
+        </collision>
+        <visual name="v48">
+          <pose>0.65000 -3.00000 1.81870 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c48">
+          <pose>0.65000 -3.00000 1.81870 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v49">
+          <pose>0.65000 -3.00000 0.90185 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.8037</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c49">
+          <pose>0.65000 -3.00000 0.90185 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.8037</size></box></geometry>
+        </collision>
+        <visual name="v50">
+          <pose>0.65000 -3.30000 1.98540 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c50">
+          <pose>0.65000 -3.30000 1.98540 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v51">
+          <pose>0.65000 -3.30000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.9704</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c51">
+          <pose>0.65000 -3.30000 0.98520 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 1.9704</size></box></geometry>
+        </collision>
+        <visual name="v52">
+          <pose>0.65000 -3.60000 2.15210 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c52">
+          <pose>0.65000 -3.60000 2.15210 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v53">
+          <pose>0.65000 -3.60000 1.06855 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 2.1371</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c53">
+          <pose>0.65000 -3.60000 1.06855 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 2.1371</size></box></geometry>
+        </collision>
+        <visual name="v54">
+          <pose>0.65000 -3.90000 2.31880 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c54">
+          <pose>0.65000 -3.90000 2.31880 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 0.0300</size></box></geometry>
+        </collision>
+        <visual name="v55">
+          <pose>0.65000 -3.90000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 2.3038</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 1.0</ambient><diffuse>0.650 0.650 0.670 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c55">
+          <pose>0.65000 -3.90000 1.15190 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.3000 1.4000 2.3038</size></box></geometry>
+        </collision>
+        <visual name="v56">
+          <pose>0.66000 -1.82347 1.25467 -0.50700 -0.00000 0.00000</pose>
+          <geometry><box><size>1.4000 5.1900 0.0200</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c56">
+          <pose>0.66000 -1.82347 1.25467 -0.50700 -0.00000 0.00000</pose>
+          <geometry><box><size>1.4000 5.1900 0.0200</size></box></geometry>
+        </collision>
+        <visual name="v57">
+          <pose>0.00000 -4.15000 1.25000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c57">
+          <pose>0.00000 -4.15000 1.25000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+        </collision>
+        <visual name="v58">
+          <pose>0.00000 -7.36000 1.25000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c58">
+          <pose>0.00000 -7.36000 1.25000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+        </collision>
+        <visual name="v59">
+          <pose>-1.60000 -5.76000 1.25000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c59">
+          <pose>-1.60000 -5.76000 1.25000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2400 0.0400 2.5000</size></box></geometry>
+        </collision>
+        <visual name="v60">
+          <pose>0.00000 -5.75000 2.48000 -1.57080 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2340 0.0420 3.2380</size></box></geometry>
+          <material><ambient>0.550 0.550 0.550 1.0</ambient><diffuse>0.550 0.550 0.550 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c60">
+          <pose>0.00000 -5.75000 2.48000 -1.57080 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2340 0.0420 3.2380</size></box></geometry>
+        </collision>
+        <visual name="v61">
+          <pose>1.60000 -5.76000 2.25000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2400 0.0400 0.5000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c61">
+          <pose>1.60000 -5.76000 2.25000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2400 0.0400 0.5000</size></box></geometry>
+        </collision>
+        <visual name="v62">
+          <pose>1.60000 -4.29000 1.00000 -0.00000 -0.26180 -1.57079</pose>
+          <geometry><box><size>0.2400 0.0400 2.0000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c62">
+          <pose>1.60000 -4.29000 1.00000 -0.00000 -0.26180 -1.57079</pose>
+          <geometry><box><size>0.2400 0.0400 2.0000</size></box></geometry>
+        </collision>
+        <visual name="v63">
+          <pose>1.60000 -6.42000 1.00000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>1.8400 0.0400 2.0000</size></box></geometry>
+          <material><ambient>0.700 0.600 0.400 1.0</ambient><diffuse>0.700 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c63">
+          <pose>1.60000 -6.42000 1.00000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>1.8400 0.0400 2.0000</size></box></geometry>
+        </collision>
+        <visual name="v64">
+          <pose>1.60000 -5.75500 2.96500 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2100 0.0400 0.9300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 0.6</ambient><diffuse>0.650 0.650 0.670 0.6</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.40</transparency>
+        </visual>
+        <collision name="c64">
+          <pose>1.60000 -5.75500 2.96500 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>3.2100 0.0400 0.9300</size></box></geometry>
+        </collision>
+        <visual name="v65">
+          <pose>-0.00500 -7.36000 2.96500 0.00000 -0.00000 -3.14159</pose>
+          <geometry><box><size>3.2100 0.0400 0.9300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 0.6</ambient><diffuse>0.650 0.650 0.670 0.6</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.40</transparency>
+        </visual>
+        <collision name="c65">
+          <pose>-0.00500 -7.36000 2.96500 0.00000 -0.00000 -3.14159</pose>
+          <geometry><box><size>3.2100 0.0400 0.9300</size></box></geometry>
+        </collision>
+        <visual name="v66">
+          <pose>-1.43500 -4.15000 2.96500 0.00000 -0.00000 -3.14159</pose>
+          <geometry><box><size>0.3300 0.0400 0.9300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 0.6</ambient><diffuse>0.650 0.650 0.670 0.6</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.40</transparency>
+        </visual>
+        <collision name="c66">
+          <pose>-1.43500 -4.15000 2.96500 0.00000 -0.00000 -3.14159</pose>
+          <geometry><box><size>0.3300 0.0400 0.9300</size></box></geometry>
+        </collision>
+        <visual name="v67">
+          <pose>1.60000 -4.26500 2.96500 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.2300 0.0400 0.9300</size></box></geometry>
+          <material><ambient>0.650 0.650 0.670 0.6</ambient><diffuse>0.650 0.650 0.670 0.6</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.40</transparency>
+        </visual>
+        <collision name="c67">
+          <pose>1.60000 -4.26500 2.96500 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.2300 0.0400 0.9300</size></box></geometry>
+        </collision>
+        <visual name="v68">
+          <pose>1.70000 -1.53000 1.77900 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.8950</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c68">
+          <pose>1.70000 -1.53000 1.77900 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.8950</length></cylinder></geometry>
+        </collision>
+        <visual name="v69">
+          <pose>1.70000 -0.76000 0.65000 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6300</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c69">
+          <pose>1.70000 -0.76000 0.65000 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6300</length></cylinder></geometry>
+        </collision>
+        <visual name="v70">
+          <pose>1.70000 -7.58200 1.77000 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.8750</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c70">
+          <pose>1.70000 -7.58200 1.77000 0.00000 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.8750</length></cylinder></geometry>
+        </collision>
+        <visual name="v71">
+          <pose>1.85500 -7.31354 0.11000 1.57080 -0.00000 2.61800</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1900</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c71">
+          <pose>1.85500 -7.31354 0.11000 1.57080 -0.00000 2.61800</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1900</length></cylinder></geometry>
+        </collision>
+        <visual name="v72">
+          <pose>2.00500 -6.66126 1.49000 1.57080 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.3300</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c72">
+          <pose>2.00500 -6.66126 1.49000 1.57080 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.3300</length></cylinder></geometry>
+        </collision>
+        <visual name="v73">
+          <pose>1.70000 -1.14500 0.10600 1.57080 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.3300</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c73">
+          <pose>1.70000 -1.14500 0.10600 1.57080 -0.00000 -3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.3300</length></cylinder></geometry>
+        </collision>
+        <visual name="v74">
+          <pose>2.01000 -7.04508 0.80000 0.00000 -0.00000 2.61800</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.9500</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c74">
+          <pose>2.01000 -7.04508 0.80000 0.00000 -0.00000 2.61800</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.9500</length></cylinder></geometry>
+        </collision>
+        <visual name="v75">
+          <pose>1.70000 -1.61500 3.34400 -3.14159 0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c75">
+          <pose>1.70000 -1.61500 3.34400 -3.14159 0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v76">
+          <pose>1.70000 -1.44500 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c76">
+          <pose>1.70000 -1.44500 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v77">
+          <pose>1.70000 -0.84500 0.19600 0.00000 -1.57079 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c77">
+          <pose>1.70000 -0.84500 0.19600 0.00000 -1.57079 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v78">
+          <pose>1.70000 -0.67500 1.09600 0.00000 1.57079 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c78">
+          <pose>1.70000 -0.67500 1.09600 0.00000 1.57079 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v79">
+          <pose>1.70000 -4.55000 3.43000 1.57080 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>5.6000</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c79">
+          <pose>1.70000 -4.55000 3.43000 1.57080 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>5.6000</length></cylinder></geometry>
+        </collision>
+        <visual name="v80">
+          <pose>3.36000 -4.55000 0.15000 1.57079 0.00000 0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c80">
+          <pose>3.36000 -4.55000 0.15000 1.57079 0.00000 0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+        </collision>
+        <visual name="v81">
+          <pose>4.46500 -6.46389 0.19000 1.57079 -0.00000 -0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c81">
+          <pose>4.46500 -6.46389 0.19000 1.57079 -0.00000 -0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+        </collision>
+        <visual name="v82">
+          <pose>1.97176 -7.78248 1.18066 2.87978 -0.00000 -0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c82">
+          <pose>1.97176 -7.78248 1.18066 2.87978 -0.00000 -0.52360</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5000</length></cylinder></geometry>
+        </collision>
+        <visual name="v83">
+          <pose>1.70000 -7.48500 3.34400 0.00000 1.57080 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c83">
+          <pose>1.70000 -7.48500 3.34400 0.00000 1.57080 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v84">
+          <pose>1.74330 -7.51000 0.19600 0.00000 -0.00000 1.04720</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c84">
+          <pose>1.74330 -7.51000 0.19600 0.00000 -0.00000 1.04720</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v85">
+          <pose>1.96830 -7.12030 0.19600 0.00000 -1.57079 1.04720</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c85">
+          <pose>1.96830 -7.12030 0.19600 0.00000 -1.57079 1.04720</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v86">
+          <pose>2.00830 -6.96030 1.40600 0.00000 1.57079 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.150 0.450 0.190 1.0</ambient><diffuse>0.150 0.450 0.190 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c86">
+          <pose>2.00830 -6.96030 1.40600 0.00000 1.57079 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v87">
+          <pose>1.70000 -6.57500 0.65000 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6600</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c87">
+          <pose>1.70000 -6.57500 0.65000 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6600</length></cylinder></geometry>
+        </collision>
+        <visual name="v88">
+          <pose>2.29000 -6.57500 0.65000 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6600</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c88">
+          <pose>2.29000 -6.57500 0.65000 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.6600</length></cylinder></geometry>
+        </collision>
+        <visual name="v89">
+          <pose>1.70000 -7.18500 1.57800 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.4950</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c89">
+          <pose>1.70000 -7.18500 1.57800 3.14159 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.4950</length></cylinder></geometry>
+        </collision>
+        <visual name="v90">
+          <pose>1.70000 -6.88500 0.11000 -1.57080 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1600</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c90">
+          <pose>1.70000 -6.88500 0.11000 -1.57080 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1600</length></cylinder></geometry>
+        </collision>
+        <visual name="v91">
+          <pose>2.15034 -1.30138 0.10600 -1.57080 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.7700</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c91">
+          <pose>2.15034 -1.30138 0.10600 -1.57080 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.7700</length></cylinder></geometry>
+        </collision>
+        <visual name="v92">
+          <pose>1.50148 -0.65094 0.50387 -2.35621 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.9100</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c92">
+          <pose>1.50148 -0.65094 0.50387 -2.35621 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.9100</length></cylinder></geometry>
+        </collision>
+        <visual name="v93">
+          <pose>2.14148 -0.69068 0.54662 -2.35621 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.8000</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c93">
+          <pose>2.14148 -0.69068 0.54662 -2.35621 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.8000</length></cylinder></geometry>
+        </collision>
+        <visual name="v94">
+          <pose>1.82700 -1.13139 0.98625 -1.57080 0.00000 1.57080</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.2000</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c94">
+          <pose>1.82700 -1.13139 0.98625 -1.57080 0.00000 1.57080</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.2000</length></cylinder></geometry>
+        </collision>
+        <visual name="v95">
+          <pose>2.00000 -6.57500 1.20000 -1.57080 0.00000 1.57080</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1600</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c95">
+          <pose>2.00000 -6.57500 1.20000 -1.57080 0.00000 1.57080</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>0.1600</length></cylinder></geometry>
+        </collision>
+        <visual name="v96">
+          <pose>1.70000 -1.91400 1.58200 3.14159 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5050</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c96">
+          <pose>1.70000 -1.91400 1.58200 3.14159 -0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>2.5050</length></cylinder></geometry>
+        </collision>
+        <visual name="v97">
+          <pose>1.70000 -4.55000 3.05000 1.57080 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>4.8400</length></cylinder></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c97">
+          <pose>1.70000 -4.55000 3.05000 1.57080 0.00000 3.14159</pose>
+          <geometry><cylinder><radius>0.0600</radius><length>4.8400</length></cylinder></geometry>
+        </collision>
+        <visual name="v98">
+          <pose>1.70100 -7.09700 2.96600 0.00000 1.57080 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c98">
+          <pose>1.70100 -7.09700 2.96600 0.00000 1.57080 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v99">
+          <pose>1.70100 -7.09700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c99">
+          <pose>1.70100 -7.09700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v100">
+          <pose>1.70100 -6.48700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c100">
+          <pose>1.70100 -6.48700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v101">
+          <pose>2.29100 -6.48700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c101">
+          <pose>2.29100 -6.48700 0.19600 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v102">
+          <pose>1.79100 -6.57700 1.11600 0.00000 1.57079 -0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c102">
+          <pose>1.79100 -6.57700 1.11600 0.00000 1.57079 -0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v103">
+          <pose>2.21100 -6.57700 1.11600 3.14159 0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c103">
+          <pose>2.21100 -6.57700 1.11600 3.14159 0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v104">
+          <pose>1.78100 -6.66700 0.10600 1.57079 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c104">
+          <pose>1.78100 -6.66700 0.10600 1.57079 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v105">
+          <pose>2.05100 -6.49700 0.10600 1.57080 -0.00001 -3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c105">
+          <pose>2.05100 -6.49700 0.10600 1.57080 -0.00001 -3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v106">
+          <pose>2.05100 -6.22700 0.10600 1.57080 -0.00000 -1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c106">
+          <pose>2.05100 -6.22700 0.10600 1.57080 -0.00000 -1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v107">
+          <pose>1.78100 -6.22700 0.10600 1.57079 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c107">
+          <pose>1.78100 -6.22700 0.10600 1.57079 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v108">
+          <pose>1.70100 -1.99700 2.96600 3.14159 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c108">
+          <pose>1.70100 -1.99700 2.96600 3.14159 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v109">
+          <pose>1.78858 -1.91138 0.19600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c109">
+          <pose>1.78858 -1.91138 0.19600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v110">
+          <pose>2.06034 -1.82138 0.10600 -1.57079 -0.00000 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c110">
+          <pose>2.06034 -1.82138 0.10600 -1.57079 -0.00000 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v111">
+          <pose>2.06034 -0.78138 0.10600 -1.57079 -0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c111">
+          <pose>2.06034 -0.78138 0.10600 -1.57079 -0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v112">
+          <pose>1.78700 -0.60600 0.10600 -1.57080 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c112">
+          <pose>1.78700 -0.60600 0.10600 -1.57080 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v113">
+          <pose>1.78700 -0.33600 0.10600 -1.57079 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c113">
+          <pose>1.78700 -0.33600 0.10600 -1.57079 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v114">
+          <pose>2.05700 -0.31479 0.16964 -0.78539 -0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c114">
+          <pose>2.05700 -0.31479 0.16964 -0.78539 -0.00000 3.14159</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v115">
+          <pose>2.05700 -1.07139 0.92625 -1.57079 0.78540 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c115">
+          <pose>2.05700 -1.07139 0.92625 -1.57079 0.78540 1.57079</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v116">
+          <pose>1.58700 -1.07139 0.92625 -2.35620 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c116">
+          <pose>1.58700 -1.07139 0.92625 -2.35620 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v117">
+          <pose>1.50034 -0.17749 0.14797 -0.00000 -0.78540 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+          <material><ambient>0.663 0.381 0.097 1.0</ambient><diffuse>0.663 0.381 0.097 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c117">
+          <pose>1.50034 -0.17749 0.14797 -0.00000 -0.78540 -1.57080</pose>
+          <geometry><box><size>0.1500 0.0800 0.1500</size></box></geometry>
+        </collision>
+        <visual name="v118">
+          <pose>-1.35000 -6.22000 2.86000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c118">
+          <pose>-1.35000 -6.22000 2.86000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+        <visual name="v119">
+          <pose>-1.35000 -5.41000 2.86000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c119">
+          <pose>-1.35000 -5.41000 2.86000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+        <visual name="v120">
+          <pose>8.01252 -0.24907 0.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c120">
+          <pose>8.01252 -0.24907 0.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v121">
+          <pose>8.03370 0.05410 0.59000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c121">
+          <pose>8.03370 0.05410 0.59000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v122">
+          <pose>8.03010 0.26803 0.20000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c122">
+          <pose>8.03010 0.26803 0.20000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v123">
+          <pose>-1.28250 -5.91850 4.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c123">
+          <pose>-1.28250 -5.91850 4.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v124">
+          <pose>-1.32537 -4.75490 3.79109 -0.00260 0.00148 3.14153</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c124">
+          <pose>-1.32537 -4.75490 3.79109 -0.00260 0.00148 3.14153</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v125">
+          <pose>-1.28250 -6.35850 4.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c125">
+          <pose>-1.28250 -6.35850 4.20000 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.4000 0.4000 0.4000</size></box></geometry>
+        </collision>
+        <visual name="v126">
+          <pose>-1.28478 -4.65789 2.79451 -0.00094 -0.00194 1.57071</pose>
+          <geometry><box><size>0.6000 0.6000 0.6000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c126">
+          <pose>-1.28478 -4.65789 2.79451 -0.00094 -0.00194 1.57071</pose>
+          <geometry><box><size>0.6000 0.6000 0.6000</size></box></geometry>
+        </collision>
+        <visual name="v127">
+          <pose>-1.28406 -4.70511 3.34206 -3.13900 -0.00148 -0.00005</pose>
+          <geometry><box><size>0.5000 0.5000 0.5000</size></box></geometry>
+          <material><ambient>0.750 0.600 0.400 1.0</ambient><diffuse>0.750 0.600 0.400 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c127">
+          <pose>-1.28406 -4.70511 3.34206 -3.13900 -0.00148 -0.00005</pose>
+          <geometry><box><size>0.5000 0.5000 0.5000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="oilbarrel">
+      <static>true</static>
+      <pose>-2.65298 -5.37394 0.44000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+          <material><ambient>0.200 0.300 0.600 1.0</ambient><diffuse>0.200 0.300 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="oil_barrel_1">
+      <static>true</static>
+      <pose>-2.40571 -4.30235 0.44000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+          <material><ambient>0.200 0.300 0.600 1.0</ambient><diffuse>0.200 0.300 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="oil_barrel_2">
+      <static>true</static>
+      <pose>-2.95216 -3.51384 0.44000 0.00000 1.57079 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+          <material><ambient>0.200 0.300 0.600 1.0</ambient><diffuse>0.200 0.300 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="oil_barrel_3">
+      <static>true</static>
+      <pose>-2.22666 -3.45529 0.30000 1.57080 -0.00000 -2.09439</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+          <material><ambient>0.200 0.300 0.600 1.0</ambient><diffuse>0.200 0.300 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.3050</radius><length>0.8800</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="workbarrier">
+      <static>true</static>
+      <pose>-1.91565 -4.91450 0.22216 0.00000 1.30900 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 1.2000 1.0000</size></box></geometry>
+          <material><ambient>1.000 0.600 0.000 1.0</ambient><diffuse>1.000 0.600 0.000 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 1.2000 1.0000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="trafficcone">
+      <static>true</static>
+      <pose>-3.04111 -4.77977 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.25500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.5100</size></box></geometry>
+          <material><ambient>1.000 0.500 0.000 1.0</ambient><diffuse>1.000 0.500 0.000 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.25500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.5100</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_2">
+      <static>true</static>
+      <pose>-2.70511 11.11380 0.00000 0.00000 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 1.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 1.1300 2.0600</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 1.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 1.1300 2.0600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="paintbucket">
+      <static>true</static>
+      <pose>0.62871 10.81400 -0.00232 0.00006 -0.00383 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+          <material><ambient>0.800 0.800 0.800 1.0</ambient><diffuse>0.800 0.800 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="paint_bucket_1">
+      <static>true</static>
+      <pose>0.36870 10.87400 -0.00232 0.00006 -0.00383 -0.78540</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+          <material><ambient>0.800 0.800 0.800 1.0</ambient><diffuse>0.800 0.800 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="paint_bucket_2">
+      <static>true</static>
+      <pose>-0.92130 10.87401 -0.00232 0.00006 -0.00383 2.35620</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+          <material><ambient>0.800 0.800 0.800 1.0</ambient><diffuse>0.800 0.800 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07800 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.0920</radius><length>0.1560</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_9">
+      <static>true</static>
+      <pose>-3.00770 -11.11170 0.00000 -0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.714 1.0</ambient><diffuse>0.729 0.741 0.714 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_3">
+      <static>true</static>
+      <pose>-2.18771 -11.11175 0.00000 -0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_5">
+      <static>true</static>
+      <pose>6.20867 4.34701 0.00000 0.00000 -0.26180 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_13">
+      <static>true</static>
+      <pose>5.86766 6.24849 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_14">
+      <static>true</static>
+      <pose>5.06766 6.24849 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_8">
+      <static>true</static>
+      <pose>6.34160 3.65023 0.00000 0.00000 -0.00000 -2.61800</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_7">
+      <static>true</static>
+      <pose>6.48031 2.55073 0.00000 0.00000 -0.00000 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_6">
+      <static>true</static>
+      <pose>5.92043 0.04786 0.00000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="cabinet_10">
+      <static>true</static>
+      <pose>5.12043 0.04786 0.00000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.25000 0.00000 0.36000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5600 0.7200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="FIRST_AID_BOX">
+      <static>true</static>
+      <pose>-3.48771 -9.92174 1.26000 0.00000 -0.00000 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.10000 0.00000 0.20500 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.2000 0.3600 0.4100</size></box></geometry>
+          <material><ambient>0.729 0.741 0.713 1.0</ambient><diffuse>0.729 0.741 0.713 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.10000 0.00000 0.20500 0.00000 -0.00000 3.14159</pose>
+          <geometry><box><size>0.2000 0.3600 0.4100</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.20200 0.00000 0.20000 0.00000 1.57080 3.14159</pose>
+          <geometry><box><size>0.1500 0.1500 0.0020</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="fireextinguisher">
+      <static>true</static>
+      <pose>3.37380 6.38451 -0.00471 0.00781 -0.00113 -2.87980</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+          <material><ambient>0.800 0.100 0.100 1.0</ambient><diffuse>0.800 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="FIRE_EXTINGUISHER_PANEL">
+      <static>true</static>
+      <pose>3.57200 6.07451 1.98000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.2000 0.2000</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.2000 0.2000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="fire_extinguisher_2">
+      <static>true</static>
+      <pose>3.24900 11.08469 0.58000 0.00000 -0.00000 -1.30900</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+          <material><ambient>0.800 0.100 0.100 1.0</ambient><diffuse>0.800 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="officetelephone">
+      <static>true</static>
+      <pose>1.69587 11.07620 1.09900 -0.00000 0.52360 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="fire_extinguisher_1">
+      <static>true</static>
+      <pose>-3.36053 -9.47374 -0.00471 0.00781 -0.00113 -0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+          <material><ambient>0.800 0.100 0.100 1.0</ambient><diffuse>0.800 0.100 0.100 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><cylinder><radius>0.1000</radius><length>0.8000</length></cylinder></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="table">
+      <static>true</static>
+      <pose>3.01946 0.01217 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.8000 1.8000 0.0500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.8000 1.8000 0.0500</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="table_3">
+      <static>true</static>
+      <pose>1.64699 -10.19930 0.00000 -0.00000 -0.00000 2.09440</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.6000 0.0500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.6000 0.0500</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.32500 -0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.32500 -0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.32500 0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.32500 0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.32500 -0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.32500 -0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.32500 0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.32500 0.77500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="table_2">
+      <static>true</static>
+      <pose>-1.07699 -10.75940 0.33000 0.00000 -1.57079 -1.30900</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.3000 0.0500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7000 1.3000 0.0500</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.32500 -0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.32500 -0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.32500 0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.32500 0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.32500 -0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.32500 -0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.32500 0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.32500 0.62500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="telephone_2">
+      <static>true</static>
+      <pose>3.23000 -0.70600 0.70316 0.00086 0.00059 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="table_1">
+      <static>true</static>
+      <pose>3.01946 1.86217 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.8000 1.8000 0.0500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.67500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.8000 1.8000 0.0500</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.37500 -0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.37500 0.87500 0.32500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.6500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="table_4">
+      <static>true</static>
+      <pose>4.03194 4.16704 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.77500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.9000 0.0500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.77500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.9000 0.0500</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>-0.27500 -0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.27500 -0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.27500 0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.27500 0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.27500 -0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.27500 -0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.27500 0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+          <material><ambient>0.926 0.912 0.698 1.0</ambient><diffuse>0.926 0.912 0.698 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.27500 0.42500 0.37500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 0.7500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="platformcart">
+      <static>true</static>
+      <pose>3.14626 3.29590 -0.00380 0.00076 -0.00079 -1.57093</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.9000 0.5000 1.0000</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.9000 0.5000 1.0000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="plasticcrate">
+      <static>true</static>
+      <pose>3.17525 3.42857 0.09983 -0.00079 -0.00062 -0.00011</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.15000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.4000 0.3000</size></box></geometry>
+          <material><ambient>0.200 0.500 0.800 1.0</ambient><diffuse>0.200 0.500 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.15000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.4000 0.3000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="plastic_crate_1">
+      <static>true</static>
+      <pose>3.17523 3.03857 0.10014 -0.00080 -0.00058 -0.00011</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.15000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.3500 0.3000</size></box></geometry>
+          <material><ambient>0.200 0.500 0.800 1.0</ambient><diffuse>0.200 0.500 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.15000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.6000 0.3500 0.3000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="platform_cart_1">
+      <static>true</static>
+      <pose>2.89064 4.17239 -0.00301 0.00000 -0.00132 -2.61800</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.9000 0.5000 1.0000</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.50000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.9000 0.5000 1.0000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose_2">
+      <static>true</static>
+      <pose>-3.47770 -9.92170 2.43000 0.00000 -0.00000 0.78540</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1000 0.1000 0.1000</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1000 0.1000 0.1000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall">
+      <static>true</static>
+      <pose>-3.57500 -3.83500 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 7.4000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 7.4000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_21">
+      <static>true</static>
+      <pose>-9.01500 -0.23500 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 10.9000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 10.9000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_22">
+      <static>true</static>
+      <pose>-14.37500 8.78500 0.00000 0.00000 0.00000 -3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 18.0000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 18.0000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="vehicle_1">
+      <static>true</static>
+      <pose>-10.37380 7.80686 0.60000 0.00000 -0.00000 1.30778</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>5.40000 0.00000 2.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2000 2.8000 4.1000</size></box></geometry>
+          <material><ambient>0.300 0.300 0.350 1.0</ambient><diffuse>0.300 0.300 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>5.40000 0.00000 2.05000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>3.2000 2.8000 4.1000</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>1.55000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>4.5000 2.8000 0.8000</size></box></geometry>
+          <material><ambient>0.300 0.300 0.350 1.0</ambient><diffuse>0.300 0.300 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>1.55000 0.00000 0.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>4.5000 2.8000 0.8000</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-3.10000 0.00000 2.21000 0.00000 1.57080 -0.00000</pose>
+          <geometry><cylinder><radius>1.2500</radius><length>11.1500</length></cylinder></geometry>
+          <material><ambient>0.800 0.800 0.800 1.0</ambient><diffuse>0.800 0.800 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-3.10000 0.00000 2.21000 0.00000 1.57080 -0.00000</pose>
+          <geometry><cylinder><radius>1.2500</radius><length>11.1500</length></cylinder></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>-6.33000 0.00000 0.27000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>4.5000 2.5000 0.8700</size></box></geometry>
+          <material><ambient>0.300 0.300 0.350 1.0</ambient><diffuse>0.300 0.300 0.350 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>-6.33000 0.00000 0.27000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>4.5000 2.5000 0.8700</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose_3">
+      <static>true</static>
+      <pose>-8.93000 6.20000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00150 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>11.0000 22.0000 0.0020</size></box></geometry>
+          <material><ambient>0.250 0.250 0.250 1.0</ambient><diffuse>0.250 0.250 0.250 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall_8">
+      <static>true</static>
+      <pose>3.57500 -0.68200 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.1000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.1000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_11">
+      <static>true</static>
+      <pose>3.57500 -6.17200 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 10.1000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 10.1000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="window">
+      <static>true</static>
+      <pose>-3.57500 0.66500 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.35000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 0.7000</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.35000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 0.7000</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>0.00000 0.00000 2.87600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 1.5520</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.00000 0.00000 2.87600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 1.5520</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>0.00000 0.00000 1.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 1.6000 1.4000</size></box></geometry>
+          <material><ambient>0.500 0.700 0.900 0.35</ambient><diffuse>0.500 0.700 0.900 0.35</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.65</transparency>
+        </visual>
+        <collision name="c2">
+          <pose>0.00000 0.00000 1.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 1.6000 1.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="radiator">
+      <static>true</static>
+      <pose>-3.35500 0.98500 0.37000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.84000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 1.9500 0.5800</size></box></geometry>
+          <material><ambient>0.900 0.900 0.900 1.0</ambient><diffuse>0.900 0.900 0.900 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.84000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 1.9500 0.5800</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="window_1">
+      <static>true</static>
+      <pose>-3.57500 9.52900 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.35000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 0.7000</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.35000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 0.7000</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>0.00000 0.00000 2.87600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 1.5520</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.00000 0.00000 2.87600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 1.6000 1.5520</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>0.00000 0.00000 1.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 1.6000 1.4000</size></box></geometry>
+          <material><ambient>0.500 0.700 0.900 0.35</ambient><diffuse>0.500 0.700 0.900 0.35</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.65</transparency>
+        </visual>
+        <collision name="c2">
+          <pose>0.00000 0.00000 1.40000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 1.6000 1.4000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="radiator_2">
+      <static>true</static>
+      <pose>-3.36500 9.24900 0.33000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.24000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 0.7500 0.5800</size></box></geometry>
+          <material><ambient>0.900 0.900 0.900 1.0</ambient><diffuse>0.900 0.900 0.900 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.24000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 0.7500 0.5800</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_9">
+      <static>true</static>
+      <pose>3.57500 0.19300 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.6500 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.6500 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_10">
+      <static>true</static>
+      <pose>3.57500 6.46800 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_3">
+      <static>true</static>
+      <pose>3.57500 8.98000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 4.7000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 4.7000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_7">
+      <static>true</static>
+      <pose>-3.57500 13.96900 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 7.3000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 7.3000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_4">
+      <static>true</static>
+      <pose>-3.57500 7.66900 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 2.1200 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 2.1200 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_12">
+      <static>true</static>
+      <pose>-3.57500 2.52500 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 2.1200 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 2.1200 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_2">
+      <static>true</static>
+      <pose>-3.57500 -9.37500 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.7000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.7000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="telephone_1">
+      <static>true</static>
+      <pose>-3.41935 -7.33080 0.88250 -0.00000 0.52360 -0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.08000 0.00000 0.06000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.1800 0.1200</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_1">
+      <static>true</static>
+      <pose>-1.90000 -11.22550 0.00000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.6000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.6000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_17">
+      <static>true</static>
+      <pose>3.48530 -11.22550 0.00000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.3700 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 2.38000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.3700 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose_4">
+      <static>true</static>
+      <pose>0.98534 -12.89547 1.47000 1.57080 -0.00000 -3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>6.0000 3.0000 0.0020</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="pose_5">
+      <static>true</static>
+      <pose>0.98534 -11.87547 1.47000 1.57080 -0.00000 -3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>6.0000 3.0000 0.0020</size></box></geometry>
+          <material><ambient>0.600 0.600 0.600 1.0</ambient><diffuse>0.600 0.600 0.600 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+      </link>
+    </model>
+    <model name="window_7">
+      <static>true</static>
+      <pose>1.59534 -11.22550 0.00000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.60000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.5000 1.2000</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.60000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.5000 1.2000</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>0.00000 0.00000 3.53000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.5000 2.4600</size></box></geometry>
+          <material><ambient>0.850 0.850 0.800 1.0</ambient><diffuse>0.850 0.850 0.800 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.00000 0.00000 3.53000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.5000 2.4600</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>0.00000 0.00000 1.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 3.5000 1.1000</size></box></geometry>
+          <material><ambient>0.500 0.700 0.900 0.35</ambient><diffuse>0.500 0.700 0.900 0.35</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+          <transparency>0.65</transparency>
+        </visual>
+        <collision name="c2">
+          <pose>0.00000 0.00000 1.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 3.5000 1.1000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="radiator_1">
+      <static>true</static>
+      <pose>2.77530 -11.01500 0.40000 -0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.84000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 1.9500 0.5800</size></box></geometry>
+          <material><ambient>0.900 0.900 0.900 1.0</ambient><diffuse>0.900 0.900 0.900 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.84000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2400 1.9500 0.5800</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="BLACK_TILES">
+      <static>true</static>
+      <pose>0.00000 -11.13000 3.35000 0.00000 -0.00000 1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1000 6.3000 1.0000</size></box></geometry>
+          <material><ambient>0.500 0.500 0.500 1.0</ambient><diffuse>0.500 0.500 0.500 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1000 6.3000 1.0000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_5">
+      <static>true</static>
+      <pose>-0.32510 11.23000 0.00000 0.00000 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 6.6000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 6.6000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_19">
+      <static>true</static>
+      <pose>5.16585 -0.03162 0.00000 0.00000 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.0000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.0000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_18">
+      <static>true</static>
+      <pose>5.16585 6.36838 0.00000 0.00000 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.0000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 3.0000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_20">
+      <static>true</static>
+      <pose>6.56585 3.17838 0.00000 0.00000 -0.00000 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 6.3000 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 6.3000 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_6">
+      <static>true</static>
+      <pose>3.19980 11.23000 0.00000 0.00000 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5500 3.6520</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 1.82600 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5500 3.6520</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pole">
+      <static>true</static>
+      <pose>-0.28845 -0.38188 2.38000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.5000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="woodenpallet">
+      <static>true</static>
+      <pose>-1.16955 -2.65951 0.58279 0.00000 -1.30900 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+          <material><ambient>0.650 0.500 0.300 1.0</ambient><diffuse>0.650 0.500 0.300 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wooden_pallet_1">
+      <static>true</static>
+      <pose>-0.15955 -2.51760 0.39136 0.00000 -0.78540 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+          <material><ambient>0.650 0.500 0.300 1.0</ambient><diffuse>0.650 0.500 0.300 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wooden_pallet_2">
+      <static>true</static>
+      <pose>-0.94955 -2.28500 0.54044 0.00000 -1.04720 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+          <material><ambient>0.650 0.500 0.300 1.0</ambient><diffuse>0.650 0.500 0.300 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wooden_pallet_3">
+      <static>true</static>
+      <pose>-0.30955 -1.98716 0.19280 0.52360 -0.00000 -3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+          <material><ambient>0.650 0.500 0.300 1.0</ambient><diffuse>0.650 0.500 0.300 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.07000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.2000 0.8000 0.1400</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="solid_23">
+      <static>true</static>
+      <pose>0.07450 0.23728 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.03000 0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.03000 0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>0.03000 0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.03000 0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.39000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.39000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>-0.08000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>-0.08000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>0.03000 -0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>0.03000 -0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v5">
+          <pose>-0.80500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c5">
+          <pose>-0.80500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v6">
+          <pose>-0.88000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c6">
+          <pose>-0.88000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v7">
+          <pose>0.95000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c7">
+          <pose>0.95000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v8">
+          <pose>-0.88000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c8">
+          <pose>-0.88000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v9">
+          <pose>0.95000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c9">
+          <pose>0.95000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v10">
+          <pose>0.87500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c10">
+          <pose>0.87500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v11">
+          <pose>0.87500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c11">
+          <pose>0.87500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v12">
+          <pose>-0.80500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c12">
+          <pose>-0.80500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v13">
+          <pose>-0.88000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c13">
+          <pose>-0.88000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v14">
+          <pose>-0.88000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c14">
+          <pose>-0.88000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v15">
+          <pose>0.95000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c15">
+          <pose>0.95000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v16">
+          <pose>0.95000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c16">
+          <pose>0.95000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v17">
+          <pose>0.03000 0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c17">
+          <pose>0.03000 0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v18">
+          <pose>0.03000 0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c18">
+          <pose>0.03000 0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v19">
+          <pose>0.03000 -0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c19">
+          <pose>0.03000 -0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v20">
+          <pose>0.03000 -0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c20">
+          <pose>0.03000 -0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v21">
+          <pose>0.03000 -0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c21">
+          <pose>0.03000 -0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pose_6">
+      <static>true</static>
+      <pose>-0.00550 -5.41272 0.00000 0.00000 -0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.03000 0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.03000 0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v1">
+          <pose>0.03000 0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.03000 0.29000 0.75000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v2">
+          <pose>-0.28000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c2">
+          <pose>-0.28000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v3">
+          <pose>0.49000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c3">
+          <pose>0.49000 0.00000 0.75000 0.00000 -0.00000 1.57080</pose>
+          <geometry><box><size>0.5720 0.0100 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v4">
+          <pose>-0.80500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c4">
+          <pose>-0.80500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v5">
+          <pose>-0.88000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c5">
+          <pose>-0.88000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v6">
+          <pose>0.95000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c6">
+          <pose>0.95000 0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v7">
+          <pose>-0.88000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c7">
+          <pose>-0.88000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v8">
+          <pose>0.95000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c8">
+          <pose>0.95000 -0.27000 0.64500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.0500 0.0500 1.2200</size></box></geometry>
+        </collision>
+        <visual name="v9">
+          <pose>0.87500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c9">
+          <pose>0.87500 0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v10">
+          <pose>0.87500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c10">
+          <pose>0.87500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v11">
+          <pose>-0.80500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c11">
+          <pose>-0.80500 -0.27000 0.01100 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.0500 0.0230</size></box></geometry>
+        </collision>
+        <visual name="v12">
+          <pose>-0.88000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c12">
+          <pose>-0.88000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v13">
+          <pose>-0.88000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c13">
+          <pose>-0.88000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v14">
+          <pose>0.95000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c14">
+          <pose>0.95000 0.00000 0.03000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v15">
+          <pose>0.95000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c15">
+          <pose>0.95000 0.00000 1.26000 0.00000 -0.00000 -1.57080</pose>
+          <geometry><box><size>0.5900 0.0500 0.0151</size></box></geometry>
+        </collision>
+        <visual name="v16">
+          <pose>0.03000 0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c16">
+          <pose>0.03000 0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v17">
+          <pose>0.03000 0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c17">
+          <pose>0.03000 0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v18">
+          <pose>0.03000 -0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c18">
+          <pose>0.03000 -0.09000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v19">
+          <pose>0.03000 -0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c19">
+          <pose>0.03000 -0.27000 0.03000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+        <visual name="v20">
+          <pose>0.03000 -0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+          <material><ambient>0.700 0.700 0.720 1.0</ambient><diffuse>0.700 0.700 0.720 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c20">
+          <pose>0.03000 -0.27000 1.26000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.8000 0.0500 0.0150</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="solid_2">
+      <static>true</static>
+      <pose>-0.25845 -11.07188 2.38000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2500 0.4000 4.7600</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2500 0.4000 4.7600</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="solid_1">
+      <static>true</static>
+      <pose>-0.28840 -5.88200 4.32690 -1.57080 0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.8660 10.5000</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.2000 0.8660 10.5000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="solid_3">
+      <static>true</static>
+      <pose>-0.01845 -9.95200 4.32690 -1.57080 0.00000 -1.57080</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.8660 7.1000</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.8660 7.1000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="solid_4">
+      <static>true</static>
+      <pose>0.19539 -7.99635 1.13769 -1.30900 0.00000 -1.83259</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.8660 7.1000</size></box></geometry>
+          <material><ambient>0.900 0.900 0.880 1.0</ambient><diffuse>0.900 0.900 0.880 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.1500 0.8660 7.1000</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="woodenchair">
+      <static>true</static>
+      <pose>6.16174 5.30183 0.00000 0.00000 -0.00000 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.01000 0.00000 0.47500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.4200 0.4000 0.9500</size></box></geometry>
+          <material><ambient>0.550 0.400 0.250 1.0</ambient><diffuse>0.550 0.400 0.250 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.01000 0.00000 0.47500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.4200 0.4000 0.9500</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="officechair">
+      <static>true</static>
+      <pose>4.53384 1.50105 0.24118 1.57079 -0.00141 2.35620</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+          <material><ambient>0.200 0.200 0.200 1.0</ambient><diffuse>0.200 0.200 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="office_chair_1">
+      <static>true</static>
+      <pose>4.72896 2.97822 -0.00142 -0.00001 -0.00141 -2.87980</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+          <material><ambient>0.200 0.200 0.200 1.0</ambient><diffuse>0.200 0.200 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="office_chair_2">
+      <static>true</static>
+      <pose>4.37064 4.18560 -0.00142 -0.00001 -0.00141 2.87980</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+          <material><ambient>0.200 0.200 0.200 1.0</ambient><diffuse>0.200 0.200 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c0">
+          <pose>-0.02000 0.00000 0.48500 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.5000 0.5000 0.9700</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="victim1">
+      <static>true</static>
+      <pose>4.11000 0.25000 0.00000 0.00000 -0.00000 3.14159</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><mesh><uri>sar_assets/meshes/boy_3.stl</uri></mesh></geometry>
+          <material><ambient>0.900 0.450 0.200 1.0</ambient><diffuse>0.900 0.450 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.00728 -0.24805 0.36931 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.4857 0.8282 0.7351</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="victim2">
+      <static>true</static>
+      <pose>-3.27000 -10.13000 0.00000 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><mesh><uri>sar_assets/meshes/man_1.stl</uri></mesh></geometry>
+          <material><ambient>0.900 0.450 0.200 1.0</ambient><diffuse>0.900 0.450 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.00621 -0.34943 0.39624 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.7481 1.2772 0.8464</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="victim3">
+      <static>true</static>
+      <pose>-1.55000 -5.17000 0.00000 0.00000 -0.00000 -0.52360</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><mesh><uri>sar_assets/meshes/woman_1.stl</uri></mesh></geometry>
+          <material><ambient>0.900 0.450 0.200 1.0</ambient><diffuse>0.900 0.450 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>0.16566 0.92679 0.09425 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>1.1959 1.8481 0.3414</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="victim4">
+      <static>true</static>
+      <pose>-10.27310 4.78362 0.00000 0.00000 -0.00000 -0.52360</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00000 0.00000 -0.00000 0.00000</pose>
+          <geometry><mesh><uri>sar_assets/meshes/girl_1.stl</uri></mesh></geometry>
+          <material><ambient>0.900 0.450 0.200 1.0</ambient><diffuse>0.900 0.450 0.200 1.0</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+        </visual>
+        <collision name="c1">
+          <pose>-0.03288 0.70438 0.08792 0.00000 -0.00000 0.00000</pose>
+          <geometry><box><size>0.8481 1.4436 0.2723</size></box></geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="originmarker">
+      <static>true</static>
+      <pose>-13.00000 16.00000 0.00200 0.00000 -0.00000 0.00000</pose>
+      <link name="link">
+        <visual name="v0">
+          <pose>0.00000 0.00000 0.00400 0.00000 -0.00000 0.00000</pose>
+          <geometry><plane><normal>0 0 1</normal><size>1 1</size></plane></geometry>
+          <material>
+            <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse><specular>0.05 0.05 0.05 1</specular>
+            <pbr><metal><albedo_map>sar_assets/textures/OriginPattern.png</albedo_map><metalness>0</metalness><roughness>1</roughness></metal></pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
